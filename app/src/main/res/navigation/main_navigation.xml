@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/nav_on_sale_list_fragment">
+
+    <!-- Home -->
+    <fragment
+        android:id="@+id/nav_on_sale_list_fragment"
+        android:name="it.polito.mad.madmax.ui.item.OnSaleListFragment"
+        android:label="@string/title_on_sale_item_fragment"
+        tools:layout="@layout/fragment_item_list" />
+
+    <!-- Map -->
+    <fragment
+        android:id="@+id/map_fragment"
+        android:name="it.polito.mad.madmax.ui.MapDialog"
+        android:label="MapFragment"
+        tools:layout="@layout/map_dialog" />
+
+    <!-- Item of interest -->
+    <fragment
+        android:id="@+id/nav_items_of_interest_fragment"
+        android:name="it.polito.mad.madmax.ui.item.ItemsOfInterestFragment"
+        android:label="@string/title_item_of_interest_fragment"
+        tools:layout="@layout/fragment_item_list" />
+
+    <!-- Bought items -->
+    <fragment
+        android:id="@+id/nav_bought_items_list_fragment"
+        android:name="it.polito.mad.madmax.ui.item.BoughtItemsListFragment"
+        android:label="@string/title_bought_items_list_fragment"
+        tools:layout="@layout/fragment_item_list" />
+
+    <!-- My items -->
+    <fragment
+        android:id="@+id/nav_item_list_fragment"
+        android:name="it.polito.mad.madmax.ui.item.ItemListFragment"
+        android:label="@string/title_item_list_fragment"
+        tools:layout="@layout/fragment_item_list">
+        <action
+            android:id="@+id/action_open_map"
+            app:destination="@id/map_fragment" />
+    </fragment>
+
+    <!-- Details item -->
+    <fragment
+        android:id="@+id/nav_details_item_fragment"
+        android:name="it.polito.mad.madmax.ui.item.DetailsItemFragment"
+        android:label="@string/title_details_item_fragment"
+        tools:layout="@layout/fragment_details_item">
+        <action
+            android:id="@+id/action_see_interested_users"
+            app:destination="@id/nav_users_list_fragment" />
+        <argument
+            android:name="item"
+            app:argType="it.polito.mad.madmax.data.model.Item" />
+    </fragment>
+
+    <!-- Edit item -->
+    <fragment
+        android:id="@+id/nav_edit_item_fragment"
+        android:name="it.polito.mad.madmax.ui.item.EditItemFragment"
+        android:label="@string/title_edit_item_fragment"
+        tools:layout="@layout/fragment_edit_item">
+        <argument
+            android:name="item"
+            app:argType="it.polito.mad.madmax.data.model.Item" />
+        <action
+            android:id="@+id/action_save_item"
+            app:destination="@id/nav_details_item_fragment"
+            app:popUpTo="@id/nav_item_list_fragment" />
+    </fragment>
+
+    <!-- Show profile -->
+    <fragment
+        android:id="@+id/nav_show_profile_fragment"
+        android:name="it.polito.mad.madmax.ui.profile.ShowProfileFragment"
+        android:label="@string/title_show_profile_fragment"
+        tools:layout="@layout/fragment_show_profile">
+        <action
+            android:id="@+id/action_edit_profile"
+            app:destination="@id/nav_edit_profile_fragment" />
+        <argument
+            android:name="userId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <!-- Edit profile -->
+    <fragment
+        android:id="@+id/nav_edit_profile_fragment"
+        android:name="it.polito.mad.madmax.ui.profile.EditProfileFragment"
+        android:label="@string/title_edit_profile_fragment"
+        tools:layout="@layout/fragment_edit_profile">
+        <action
+            android:id="@+id/action_save_profile"
+            app:destination="@id/nav_show_profile_fragment"
+            app:popUpTo="@id/nav_show_profile_fragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!--Interested Users -->
+    <fragment
+        android:id="@+id/nav_users_list_fragment"
+        android:name="it.polito.mad.madmax.ui.profile.UsersListFragment"
+        android:label="@string/title_users_list_fragment"
+        tools:layout="@layout/fragment_users_list">
+        <argument
+            android:name="item"
+            app:argType="it.polito.mad.madmax.data.model.Item" />
+    </fragment>
+
+    <!-- Global actions -->
+    <action
+        android:id="@+id/action_global_show_profile"
+        app:destination="@id/nav_show_profile_fragment" />
+
+    <action
+        android:id="@+id/action_global_details_item"
+        app:destination="@id/nav_details_item_fragment" />
+
+    <action
+        android:id="@+id/action_global_edit_item"
+        app:destination="@id/nav_edit_item_fragment" />
+
+</navigation>

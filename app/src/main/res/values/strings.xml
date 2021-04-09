@@ -1,0 +1,211 @@
+<resources>
+    <!-- APPLICATION -->
+    <string name="app_name">MadMax</string>
+
+    <!-- FILE PROVIDER -->
+    <string name="file_provider">it.polito.mad.madmax.fileprovider</string>
+
+    <!-- SAVED STATES -->
+    <string name="edit_profile_state">edit_profile_state</string>
+    <string name="edit_profile_dialog_state">edit_profile_dialog_state</string>
+    <string name="edit_item_state">edit_item_state</string>
+    <string name="edit_item_dialog_state">edit_item_dialog_state</string>
+    <string name="map_dialog_state">map_dialog_state</string>
+
+    <!-- NAVIGATION -->
+    <string name="title_show_profile_fragment">My Profile</string>
+    <string name="title_edit_profile_fragment">Edit profile</string>
+    <string name="title_users_list_fragment">Interested users</string>
+    <string name="title_details_item_fragment">Item</string>
+    <string name="title_edit_item_fragment">Edit item</string>
+    <string name="title_create_item_fragment">Create item</string>
+    <string name="title_on_sale_item_fragment">Home</string>
+    <string name="title_item_list_fragment">My Items</string>
+    <string name="title_item_of_interest_fragment">My Favourite Items</string>
+    <string name="title_bought_items_list_fragment">Bought Items</string>
+
+    <!-- MENU -->
+    <string name="menu_settings">Settings</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_disable">Disable</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_search">Search</string>
+
+    <!-- BUTTONS -->
+    <string name="button_edit_item">Edit</string>
+    <string name="button_sell_item">Sell</string>
+
+    <!-- MESSAGES -->
+    <!-- Normal -->
+    <string name="message_taken_photo">Picture taken correctly</string>
+    <string name="message_chosen_photo">Picture loaded correctly</string>
+    <string name="message_empty_list">There are no items! Please create one</string>
+    <string name="message_empty_list_others">There are no items! Please try to change the filter</string>
+    <string name="message_empty_list_favourite">There are no favourite items!</string>
+    <string name="message_empty_list_bought">There are no bought items!</string>
+    <string name="message_empty_interested_users">Sorry, there are no interested users!</string>
+    <!-- Error -->
+    <string name="message_error_field_required">Sorry, this field is required</string>
+    <string name="message_error_field_invalid_email">Sorry, this email is not valid</string>
+    <string name="message_error_field_invalid_location">Sorry, this location is not valid</string>
+    <string name="message_error_field_date_future">Sorry, the expiration date must be future</string>
+    <string name="message_error_intent">Request cancelled or something went wrong</string>
+    <string name="message_error_gallery_app">Sorry, could not find any gallery app</string>
+    <string name="message_error_cat">Cannot find this category</string>
+
+    <!-- DIALOGS -->
+    <string name="photo_dialog_ok">OK</string>
+    <string name="photo_dialog_apply">Apply</string>
+    <string name="photo_dialog_cancel">Cancel</string>
+    <string name="photo_dialog_sure_title">Unsaved changes</string>
+    <string name="photo_dialog_sure_text">It looks like there are unsaved changes that will be discarded if you proceed.\n\nContinue anyway?</string>
+    <string name="map_dialog_confirm">Confirm</string>
+    <string name="dialog_filter_title">Item filter</string>
+    <string name="dialog_filter_description">Select how you want to filter the items</string>
+    <string name="dialog_filter_clear">Filters</string>
+    <string name="dialog_filter_min_price">Minimum price</string>
+    <string name="dialog_filter_max_price">Maximum price</string>
+    <string name="dialog_change_title">Select a method to change the photo</string>
+    <string name="dialog_change_take">Take picture</string>
+    <string name="dialog_change_gallery">Choose from gallery</string>
+    <string name="dialog_change_remove">Remove photo</string>
+    <string name="dialog_rate_title">User rating</string>
+    <string name="dialog_rate_description">You can give a rating to the user that sold this item to you</string>
+    <string name="dialog_rate_button">Rate</string>
+
+    <!-- CONTENT DESCRIPTIONS -->
+    <string name="content_settings">Settings</string>
+    <string name="content_logout">Logout</string>
+    <string name="content_edit">Edit</string>
+    <string name="content_delete">Delete</string>
+    <string name="content_disable">Disable</string>
+    <string name="content_save">Save</string>
+    <string name="content_profile_photo">Photo profile</string>
+    <string name="content_item_photo">Photo item</string>
+    <string name="content_filter">Filter</string>
+    <string name="content_search">Search</string>
+    <string name="content_hot">Hot</string>
+    <string name="content_transparent">Transparent layer</string>
+
+    <!-- PROFILE -->
+    <string name="profile_general_info">Profile Information</string>
+    <string name="profile_name">Full Name</string>
+    <string name="profile_nickname">Nickname</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_location">Location</string>
+    <string name="profile_location_button">Map</string>
+    <string name="profile_phone">Phone</string>
+
+    <!-- ITEM -->
+    <string name="item_title">Title</string>
+    <string name="item_general_info">General Information</string>
+    <string name="item_description">Description</string>
+    <string name="item_comment">Not reviewed yet</string>
+    <string name="item_category_main">Category</string>
+    <string name="item_category_sub">Sub Category</string>
+    <string name="item_price">Price</string>
+    <string name="item_location">Location</string>
+    <string name="item_expiry">Expiry Date</string>
+    <string name="item_owner">Item Owner</string>
+    <string name="item_expiry_change">Change</string>
+    <string name="item_price_set">%.2f €</string>
+    <string name="dot">&#8226;</string>
+
+    <!-- FIREBASE CLOUD MESSAGING-->
+    <string name="fcm_interest_channel_id">fcm_madmax_item_interest</string>
+    <string name="fcm_interest_channel_name">Item\'s interest</string>
+    <string name="fcm_interest_channel_description">Receive notifications about interest in your items.</string>
+    <string name="fcm_status_channel_id">fcm_madmax_item_status</string>
+    <string name="fcm_status_channel_name">Item\'s status</string>
+    <string name="fcm_status_channel_description">Receive notifications about the status of the items I\'m interested in.</string>
+    <string name="fcm_api_url">https://fcm.googleapis.com/fcm/send</string>
+    <string name="fcm_server_key">AAAAY4qEYoE:APA91bE8SyfjBdnCMjkHqT63CLcuZw_0OY-51XlUCy5kgTw4e5-GRDwyYKsLGVGeCP_DG6DIwDzcPSXefAkZrO6-r4dOZxLroVFYkrbbgiT35gf4MIfaemo4w-1RzcnFacpI2cw9_j6i</string>
+    <string name="fcm_content_type">application/json</string>
+
+    <!-- Categories -->
+    <string-array name="item_categories_main">
+        <item>Arts &amp; Crafts</item>
+        <item>Sports &amp; Hobby</item>
+        <item>Baby</item>
+        <item>Women\'s fashion</item>
+        <item>Men\'s fashion</item>
+        <item>Electronics</item>
+        <item>Games &amp; Videogames</item>
+        <item>Automotive</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_art_and_crafts">
+        <item>Painting, Drawing &amp; Art Supplies</item>
+        <item>Sewing</item>
+        <item>Scrapbooking &amp; Stamping</item>
+        <item>Party Decorations &amp;Supplies</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_sports_and_hobby">
+        <item>Sports and Outdoors</item>
+        <item>Outdoor Recreation</item>
+        <item>Sports &amp; Fitness</item>
+        <item>Pet Supplies</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_baby">
+        <item>Apparel &amp; Accessories</item>
+        <item>Baby &amp; Toddler Toys</item>
+        <item>Car Seats &amp; Accessories</item>
+        <item>Pregnancy &amp; Maternity</item>
+        <item>Strollers &amp; Accessories</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_womens_fashion">
+        <item>Clothing</item>
+        <item>Shoes</item>
+        <item>Watches</item>
+        <item>Handbags</item>
+        <item>Accessories</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_mens_fashion">
+        <item>Clothing</item>
+        <item>Shoes</item>
+        <item>Watches</item>
+        <item>Accessories</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_electronics">
+        <item>Computers</item>
+        <item>Monitors</item>
+        <item>Printers &amp; Scanners</item>
+        <item>Camera &amp; Photo</item>
+        <item>Smartphone &amp; Tablet</item>
+        <item>Audio</item>
+        <item>Television &amp; Video</item>
+        <item>Video Game Consoles</item>
+        <item>Wearable Technology</item>
+        <item>Accessories &amp; Supplies</item>
+        <item>Irons &amp; Steamers</item>
+        <item>Vacuums &amp; Floor Care</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_games_and_videogames">
+        <item>Action Figures &amp; Statues</item>
+        <item>Arts &amp; Crafts</item>
+        <item>Building Toys</item>
+        <item>Dolls &amp; Accessories</item>
+        <item>Kids\' Electronics</item>
+        <item>Learning &amp; Education</item>
+        <item>Tricycles, Scooters &amp; Wagons</item>
+        <item>Videogames</item>
+    </string-array>
+
+    <string-array name="item_categories_sub_automotive">
+        <item>Car Electronics &amp; Accessories</item>
+        <item>Accessories</item>
+        <item>Motorcycle &amp; Powersports</item>
+        <item>Replacement Parts</item>
+        <item>RV Parts &amp; Accessories</item>
+        <item>Tools &amp; Equipment</item>
+    </string-array>
+</resources>
