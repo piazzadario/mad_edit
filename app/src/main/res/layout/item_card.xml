@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,7 +20,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:adjustViewBounds="true"
-            android:background="#e0e0e0"
             android:contentDescription="@string/content_item_photo"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_camera"
@@ -35,152 +35,127 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/item_content"
-            android:layout_width="match_parent"
+
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/item_guideline_vertical"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="16dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp"/>
+
+
+        <TextView
+            android:id="@+id/item_title"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/item_guideline"
+            app:layout_constraintStart_toStartOf="@id/item_guideline_vertical"
+            app:layout_constraintRight_toLeftOf="@id/dot_separator"
+            android:hint="@string/item_title" />
+
+        <TextView
+            android:id="@+id/dot_separator"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dot"
+            app:layout_constraintStart_toEndOf="@id/item_title"
+            app:layout_constraintRight_toLeftOf="@id/item_price"
+            app:layout_constraintLeft_toRightOf="@id/item_title"
+            app:layout_constraintTop_toBottomOf="@id/item_guideline" />
+
+        <TextView
+            android:id="@+id/item_price"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/item_price"
+            app:layout_constraintRight_toLeftOf="@id/item_hot"
+            app:layout_constraintStart_toEndOf="@id/dot_separator"
+            app:layout_constraintTop_toBottomOf="@id/item_guideline" />
+
+        <TextView
+            android:id="@+id/item_hot"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:drawableEnd="@drawable/ic_hot"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_guideline" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:cardCornerRadius="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:layout_constraintTop_toBottomOf="@id/item_title"
+            app:layout_constraintStart_toStartOf="@id/item_guideline_vertical">
+
+            <TextView
+                android:id="@+id/item_category_text"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/item_category_main"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:textAlignment="center"
+                android:textColor="@color/iconOnPrimary"
+                android:textColorHint="@color/iconOnPrimary" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/item_description"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="@string/item_description"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@id/item_action"
+            app:layout_constraintStart_toStartOf="@id/item_guideline_vertical"
+            app:layout_constraintTop_toTopOf="@id/item_action" />
+
+        <Button
+            android:id="@+id/item_action"
+            style="@style/Theme.MadMax.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_edit"
+            app:iconTint="@color/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_guideline">
+            app:layout_constraintTop_toBottomOf="@id/item_category"
+            app:strokeWidth="0dp" />
 
-            <LinearLayout
-                android:id="@+id/item_header_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toStartOf="@id/item_hot"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <ViewStub
+            android:id="@+id/rating_stub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inflatedId="@+id/rating_container"
+            android:layout="@layout/rating_container"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-                <TextView
-                    android:id="@+id/item_title"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/item_title" />
-
-                <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="@string/dot" />
-
-                <TextView
-                    android:id="@+id/item_price"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:hint="@string/item_price" />
-
-            </LinearLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/item_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                app:cardBackgroundColor="@color/colorSecondaryLight"
-                app:cardCornerRadius="0dp"
-                app:cardPreventCornerOverlap="true"
-                app:layout_constraintStart_toStartOf="@id/item_header_container"
-                app:layout_constraintTop_toBottomOf="@id/item_header_container">
-
-                <TextView
-                    android:id="@+id/item_category_text"
-                    style="@style/TextAppearance.MaterialComponents.Body2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/item_category_main"
-                    android:paddingStart="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="4dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/iconOnPrimary"
-                    android:textColorHint="@color/iconOnPrimary" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:id="@+id/item_hot"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="12dp"
-                android:drawableEnd="@drawable/ic_hot"
-                android:gravity="center_vertical"
-                app:layout_constraintBottom_toBottomOf="@id/item_header_container"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/item_header_container"
-                app:layout_constraintTop_toTopOf="@id/item_header_container" />
-
-            <TextView
-                android:id="@+id/item_description"
-                style="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:hint="@string/item_description"
-                android:maxLines="1"
-                app:layout_constraintBottom_toBottomOf="@id/item_action"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/item_action" />
-
-            <Button
-                android:id="@+id/item_action"
-                style="@style/Theme.MadMax.Button.OutlinedButton.IconOnly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_edit"
-                app:iconTint="@color/colorSecondary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_category"
-                app:strokeWidth="0dp" />
-
-            <LinearLayout
-                android:id="@+id/item_rating_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/item_action"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/item_action">
-
-                <TextView
-                    android:id="@+id/item_comment"
-                    style="@style/TextAppearance.MaterialComponents.Body2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxWidth="160dp"
-                    android:maxLines="1"
-                    android:text="@string/item_comment"
-                    android:textStyle="italic" />
-
-                <RatingBar
-                    android:id="@+id/item_rating"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:isIndicator="true"
-                    android:numStars="5" />
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </ViewStub>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </com.google.android.material.card.MaterialCardView>

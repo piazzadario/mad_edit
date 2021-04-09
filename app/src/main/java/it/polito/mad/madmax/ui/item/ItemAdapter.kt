@@ -1,5 +1,6 @@
 package it.polito.mad.madmax.ui.item
 
+import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ import it.polito.mad.madmax.R
 import it.polito.mad.madmax.data.model.Item
 import it.polito.mad.madmax.getColorIdCategory
 import kotlinx.android.synthetic.main.item_card.view.*
+import kotlinx.android.synthetic.main.rating_container.view.*
+import kotlinx.coroutines.coroutineScope
+
 
 class ItemAdapter(private val cardClickListener: (Item) -> Any, private val actionListener: (Item) -> Any = {}) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
@@ -38,6 +42,8 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
     }
 
     class ItemViewHolder(private val itemV: View) : RecyclerView.ViewHolder(itemV) {
+
+
 
         fun bind(item: Item, cardClickListener: (Item) -> Any, action: (Item) -> Any) {
             // Title
@@ -62,6 +68,7 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
 
             // Image
             itemV.item_photo.post {
+
                 Picasso.get().load(Uri.parse(item.photo)).into(itemV.item_photo, object : Callback {
                     override fun onSuccess() {
                         itemV.item_photo.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -70,6 +77,7 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
                     override fun onError(e: Exception?) {
                         itemV.item_photo.apply {
                             setImageDrawable(itemV.context.getDrawable(R.drawable.ic_camera))
+                            setBackgroundColor(Color.parseColor("e0e0e0"))
                             scaleType = ImageView.ScaleType.FIT_CENTER
                         }
                     }
@@ -87,11 +95,10 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
                         "Bought" -> {
                             itemV.item_action.visibility = View.INVISIBLE
                             itemV.item_description.visibility = View.GONE
-                            itemV.item_rating_container.visibility = View.VISIBLE
+                            val inflatedView = itemV.rating_stub.inflate()
                             if (item.rating != "") {
-                                itemV.item_rating.visibility = View.VISIBLE
-                                itemV.item_rating.rating = item.rating.split("+/")[1].toFloat()
-                                itemV.item_comment.text = item.rating.split("+/")[2]
+                                inflatedView.item_rating.rating = item.rating.split("+/")[1].toFloat()
+                                inflatedView.item_comment.text = item.rating.split("+/")[2]
                             } else {
                                 itemV.item_rating.visibility = View.INVISIBLE
                             }
@@ -115,10 +122,9 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
                             } else {
                                 itemV.item_action.visibility = View.INVISIBLE
                                 itemV.item_description.visibility = View.GONE
-                                itemV.item_rating_container.visibility = View.VISIBLE
-                                itemV.item_rating.visibility = View.VISIBLE
-                                itemV.item_rating.rating = item.rating.split("+/")[1].toFloat()
-                                itemV.item_comment.text = item.rating.split("+/")[2]
+                                val inflatedView = itemV.rating_stub.inflate()
+                                inflatedView.item_rating.rating = item.rating.split("+/")[1].toFloat()
+                                inflatedView.item_comment.text = item.rating.split("+/")[2]
                             }
                         }
                     }

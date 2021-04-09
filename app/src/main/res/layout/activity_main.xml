@@ -38,25 +38,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+                <ProgressBar
                     android:id="@+id/main_progress"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@color/colorSurface"
-                    android:orientation="vertical"
-                    android:translationZ="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ProgressBar
-                        style="@style/Theme.MadMax.ProgressBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:indeterminate="true" />
-
-                </LinearLayout>
+                    style="@style/Theme.MadMax.ProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintTop_toTopOf="@+id/main_nav_host_fragment" />
 
                 <fragment
                     android:id="@+id/main_nav_host_fragment"

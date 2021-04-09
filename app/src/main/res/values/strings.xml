@@ -26,7 +26,6 @@
 
     <!-- MENU -->
     <string name="menu_settings">Settings</string>
-    <string name="menu_logout">Logout</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
     <string name="menu_disable">Disable</string>
@@ -35,7 +34,6 @@
     <string name="menu_search">Search</string>
 
     <!-- BUTTONS -->
-    <string name="button_edit_item">Edit</string>
     <string name="button_sell_item">Sell</string>
 
     <!-- MESSAGES -->
@@ -53,8 +51,6 @@
     <string name="message_error_field_invalid_location">Sorry, this location is not valid</string>
     <string name="message_error_field_date_future">Sorry, the expiration date must be future</string>
     <string name="message_error_intent">Request cancelled or something went wrong</string>
-    <string name="message_error_gallery_app">Sorry, could not find any gallery app</string>
-    <string name="message_error_cat">Cannot find this category</string>
 
     <!-- DIALOGS -->
     <string name="photo_dialog_ok">OK</string>
@@ -78,7 +74,6 @@
 
     <!-- CONTENT DESCRIPTIONS -->
     <string name="content_settings">Settings</string>
-    <string name="content_logout">Logout</string>
     <string name="content_edit">Edit</string>
     <string name="content_delete">Delete</string>
     <string name="content_disable">Disable</string>
@@ -86,8 +81,6 @@
     <string name="content_profile_photo">Photo profile</string>
     <string name="content_item_photo">Photo item</string>
     <string name="content_filter">Filter</string>
-    <string name="content_search">Search</string>
-    <string name="content_hot">Hot</string>
     <string name="content_transparent">Transparent layer</string>
 
     <!-- PROFILE -->
@@ -109,8 +102,6 @@
     <string name="item_price">Price</string>
     <string name="item_location">Location</string>
     <string name="item_expiry">Expiry Date</string>
-    <string name="item_owner">Item Owner</string>
-    <string name="item_expiry_change">Change</string>
     <string name="item_price_set">%.2f €</string>
     <string name="dot">&#8226;</string>
 
@@ -118,9 +109,6 @@
     <string name="fcm_interest_channel_id">fcm_madmax_item_interest</string>
     <string name="fcm_interest_channel_name">Item\'s interest</string>
     <string name="fcm_interest_channel_description">Receive notifications about interest in your items.</string>
-    <string name="fcm_status_channel_id">fcm_madmax_item_status</string>
-    <string name="fcm_status_channel_name">Item\'s status</string>
-    <string name="fcm_status_channel_description">Receive notifications about the status of the items I\'m interested in.</string>
     <string name="fcm_api_url">https://fcm.googleapis.com/fcm/send</string>
     <string name="fcm_server_key">AAAAY4qEYoE:APA91bE8SyfjBdnCMjkHqT63CLcuZw_0OY-51XlUCy5kgTw4e5-GRDwyYKsLGVGeCP_DG6DIwDzcPSXefAkZrO6-r4dOZxLroVFYkrbbgiT35gf4MIfaemo4w-1RzcnFacpI2cw9_j6i</string>
     <string name="fcm_content_type">application/json</string>

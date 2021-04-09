@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryLight">#6EC6FF</color>
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorSecondaryLight">#80E27E</color>
     <color name="colorSecondary">#4CAF50</color>
     <color name="colorSecondaryVariant">#087F23</color>
-    <color name="colorError">#F44336</color>
-    <color name="colorBlack">#000000</color>
-    <color name="colorGreyDark">#424242</color>
-    <color name="colorGrey">#E0E0E0</color>-->
+    <color name="colorError">#F44336</color><![CDATA[
+
+
+    -->
+    ]]>
     <color name="colorSurface">@android:color/white</color>
     <color name="iconOnPrimary">@android:color/white</color>
     <color name="iconOnSecondary">@android:color/white</color>

@@ -68,9 +68,9 @@ class ItemListFragment : Fragment() {
             itemAdapter.setItems(it)
             hideProgress(requireActivity())
             if (it.size == 0) {
-                item_list_empty.animate().alpha(1F).startDelay = 300
+                item_list_empty_tv.animate().alpha(1F).startDelay = 300
             } else {
-                item_list_empty.animate().alpha(0F).startDelay = 300
+                item_list_empty_tv.animate().alpha(0F).startDelay = 300
             }
         })
 
