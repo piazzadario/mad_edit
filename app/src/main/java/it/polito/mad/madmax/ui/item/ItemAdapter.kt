@@ -67,9 +67,15 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
             itemV.item_category_text.text = item.categoryMain
 
             // Image
-            itemV.item_photo.post {
+            itemV.item_photo.apply {
 
-                Picasso.get().load(Uri.parse(item.photo)).into(itemV.item_photo, object : Callback {
+                Thread(Runnable {
+                    val img = Picasso.get().load(Uri.parse(item.photo)).get()
+                    this.post{
+                        setImageBitmap(img)
+                    }
+                }).start()
+                /*Picasso.get().load(Uri.parse(item.photo)).into(itemV.item_photo, object : Callback {
                     override fun onSuccess() {
                         itemV.item_photo.scaleType = ImageView.ScaleType.CENTER_CROP
                     }
@@ -81,7 +87,7 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
                             scaleType = ImageView.ScaleType.FIT_CENTER
                         }
                     }
-                })
+                })*/
             }
 
             // Interested people

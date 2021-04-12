@@ -60,6 +60,7 @@ class BoughtItemsListFragment : Fragment() {
                 item_list_empty_tv.animate().alpha(1F).startDelay = 300
             } else {
                 item_list_empty_tv.animate().alpha(0F).startDelay = 300
+
             }
         })
 

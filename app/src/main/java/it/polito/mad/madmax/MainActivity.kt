@@ -3,7 +3,6 @@ package it.polito.mad.madmax
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -14,6 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.startup.AppInitializer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -41,10 +41,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfig: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+        val initializer = AppInitializer.getInstance(applicationContext)
+        initializer.initializeComponent(FirebaseInitProviderInitializer::class.java)
+
         setContentView(R.layout.activity_main)
 
         // Action bar
+        app_bar_layout.setBackgroundResource(0)
         setSupportActionBar(main_toolbar)
 
         // Setup Navigation
@@ -70,7 +76,12 @@ class MainActivity : AppCompatActivity() {
                     main_nav_header_photo.apply {
                         if (user.photo != "") {
                             translationY = 0F
-                            Picasso.get().load(Uri.parse(user.photo)).into(this)
+                                Thread(Runnable {
+                                    val img = Picasso.get().load(Uri.parse(user.photo)).get()
+                                    this.post{
+                                        setImageBitmap(img)
+                                    }
+                                }).start()
                         } else {
                             translationY = measuredHeight / 6F
                             setImageDrawable(getDrawable(R.drawable.ic_profile))
@@ -91,10 +102,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfig) || super.onSupportNavigateUp()

@@ -38,6 +38,7 @@ class OnSaleListFragment : Fragment() {
         setHasOptionsMenu(true)
         itemAdapter = ItemAdapter(actionDetails, actionInterest)
         itemsVM.clearItems()
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -64,6 +65,7 @@ class OnSaleListFragment : Fragment() {
             if (it.size == 0) {
                 item_list_empty_tv.animate().alpha(1F).startDelay = 300
             } else {
+                item_list_empty_tv.visibility = View.GONE
                 item_list_empty_tv.animate().alpha(0F).startDelay = 300
             }
         })
