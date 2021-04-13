@@ -162,7 +162,6 @@ class MainActivity : AppCompatActivity() {
 
     // Companion
     companion object {
-        private const val TAG = "MM_MAIN_ACTIVITY"
         private const val RC_GOOGLE_SIGN_IN = 9001
     }
 }

@@ -104,7 +104,7 @@ class EditItemFragment : Fragment(), AdapterView.OnItemClickListener {
             MapDialog().apply {
                 setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_MadMax_Dialog)
                 arguments = bundleOf("location" to this@EditItemFragment.item_edit_location.text.toString(), "editMode" to true)
-            }.show(requireFragmentManager(), TAG)
+            }.show(parentFragmentManager, TAG)
         }
 
         // Dialog listener

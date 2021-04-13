@@ -130,7 +130,7 @@ class OnSaleListFragment : Fragment() {
     private fun openFilterDialog() {
         ItemFilterDialog().apply {
             setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_MadMax_Dialog)
-        }.show(requireFragmentManager(), TAG)
+        }.show(parentFragmentManager, TAG)
     }
 
     private var actionDetails = { item: Item ->
