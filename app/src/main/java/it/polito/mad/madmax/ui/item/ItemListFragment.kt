@@ -125,8 +125,4 @@ class ItemListFragment : Fragment() {
         }
     }
 
-    // Companion
-    companion object {
-        private const val TAG = "MM_MY_LIST"
-    }
 }

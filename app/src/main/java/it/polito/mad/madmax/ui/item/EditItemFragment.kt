@@ -374,7 +374,7 @@ class EditItemFragment : Fragment(), AdapterView.OnItemClickListener {
                             Request.Method.GET,
                             "https://photon.komoot.de/api/?q=${s}&limit=5".replace(" ", "%20"),
                             null,
-                            Response.Listener { response ->
+                            { response ->
                                 context?.also { context ->
                                     val cities = (Gson().fromJson(response["features"].toString(), object : TypeToken<ArrayList<PlaceInfo?>?>() {}.type) as ArrayList<PlaceInfo>).map { pi ->
                                         "${pi.properties.name} ${pi.properties.city} ${pi.properties.state} ${pi.properties.country}"
@@ -385,7 +385,7 @@ class EditItemFragment : Fragment(), AdapterView.OnItemClickListener {
                                     }
                                 }
                             },
-                            Response.ErrorListener { error ->
+                            { error ->
                                 Log.d("EditProfileFragment.TAG", error.toString())
                             }
                         )

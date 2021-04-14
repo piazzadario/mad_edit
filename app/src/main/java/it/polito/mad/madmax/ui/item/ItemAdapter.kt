@@ -69,12 +69,12 @@ class ItemAdapter(private val cardClickListener: (Item) -> Any, private val acti
             // Image
             itemV.item_photo.apply {
 
-                Thread(Runnable {
+                Thread {
                     val img = Picasso.get().load(Uri.parse(item.photo)).get()
-                    this.post{
+                    this.post {
                         setImageBitmap(img)
                     }
-                }).start()
+                }.start()
                 /*Picasso.get().load(Uri.parse(item.photo)).into(itemV.item_photo, object : Callback {
                     override fun onSuccess() {
                         itemV.item_photo.scaleType = ImageView.ScaleType.CENTER_CROP

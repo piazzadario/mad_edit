@@ -83,7 +83,7 @@ class BoughtItemsListFragment : Fragment() {
         UserRateDialog().apply {
             arguments = bundleOf("userId" to item.userId, "itemId" to item.itemId)
             setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_MadMax_Dialog)
-        }.show(requireFragmentManager(), TAG)
+        }.show(parentFragmentManager, TAG)
     }
 
     // Companion

@@ -49,7 +49,6 @@ class OnSaleListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showProgress(requireActivity())
         hideFab(requireActivity())
-
         // Init recyclerview
         item_list_rv.apply {
             setHasFixedSize(false)
@@ -132,7 +131,7 @@ class OnSaleListFragment : Fragment() {
     private fun openFilterDialog() {
         ItemFilterDialog().apply {
             setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_MadMax_Dialog)
-        }.show(requireFragmentManager(), TAG)
+        }.show(parentFragmentManager, TAG)
     }
 
     private var actionDetails = { item: Item ->

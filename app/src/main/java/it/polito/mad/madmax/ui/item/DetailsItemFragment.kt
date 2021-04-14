@@ -75,6 +75,7 @@ class DetailsItemFragment : Fragment(),OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showProgress(requireActivity())
+        activity?.reportFullyDrawn()
         hideFab(requireActivity())
 
         // Real 0.33 guideline
@@ -177,6 +178,9 @@ class DetailsItemFragment : Fragment(),OnMapReadyCallback {
             itemListener.remove()
         if (this::userListener.isInitialized)
             userListener.remove()
+
+
+        removeFabListener(requireActivity())
         item_details_card.removeOnLayoutChangeListener(cardRadiusConstrain)
         requireActivity().main_scroll_view.viewTreeObserver.removeOnScrollChangedListener(scrollListener)
     }

@@ -59,6 +59,9 @@ fun showFab(activity: Activity, clickListener: View.OnClickListener, drawable: D
     }
 }
 
+fun removeFabListener(activity: Activity){
+    activity.main_fab.setOnClickListener(null)
+}
 fun hideFab(activity: Activity) {
     activity.main_fab.visibility = View.GONE
 }

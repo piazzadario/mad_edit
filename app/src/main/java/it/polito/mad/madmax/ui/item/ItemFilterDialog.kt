@@ -69,6 +69,14 @@ class ItemFilterDialog : DialogFragment(), AdapterView.OnItemClickListener {
         filter_dialog_clear.setOnClickListener { clearFilters() }
     }
 
+    /*override fun onDestroyView() {
+        super.onDestroyView()
+        filter_dialog_apply.setOnClickListener(null)
+        filter_dialog_clear.setOnClickListener(null)
+        filter_dialog_main_cat.onFocusChangeListener = null
+        filter_dialog_sub_cat.onFocusChangeListener = null
+    }*/
+
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         filter_dialog_main_cat.setAdapter(getMainCategoryAdapter(requireContext()))

@@ -3,6 +3,8 @@ package it.polito.mad.madmax
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -25,6 +27,8 @@ import com.squareup.picasso.Picasso
 import it.polito.mad.madmax.data.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_nav_header.view.*
+import kotlinx.coroutines.coroutineScope
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,7 +44,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfig: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        /*StrictMode.setThreadPolicy(
+            StrictMode.ThreadPolicy.Builder()
+                .detectDiskReads()
+                .detectDiskWrites()
+                .detectAll() // or .detectAll() for all detectable problems
+                .penaltyLog()
+                .build()
+        )
+        StrictMode.setVmPolicy(
+            VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .detectLeakedClosableObjects()
+                .penaltyLog()
+                .penaltyDeath()
+                .build()
+        )
+*/
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
@@ -54,13 +74,15 @@ class MainActivity : AppCompatActivity() {
         main_nav.apply {
             setupWithNavController(navController)
         }
-        appBarConfig = AppBarConfiguration(setOf(
-            R.id.nav_item_list_fragment,
-            R.id.nav_on_sale_list_fragment,
-            R.id.nav_items_of_interest_fragment,
-            R.id.nav_bought_items_list_fragment,
-            R.id.nav_show_profile_fragment
-        ), main_drawer_layout)
+        appBarConfig = AppBarConfiguration(
+            setOf(
+                R.id.nav_item_list_fragment,
+                R.id.nav_on_sale_list_fragment,
+                R.id.nav_items_of_interest_fragment,
+                R.id.nav_bought_items_list_fragment,
+                R.id.nav_show_profile_fragment
+            ), main_drawer_layout
+        )
         setupActionBarWithNavController(navController, appBarConfig)
 
         // Observe user data
@@ -72,12 +94,12 @@ class MainActivity : AppCompatActivity() {
                     main_nav_header_photo.apply {
                         if (user.photo != "") {
                             translationY = 0F
-                                Thread(Runnable {
-                                    val img = Picasso.get().load(Uri.parse(user.photo)).get()
-                                    this.post{
-                                        setImageBitmap(img)
-                                    }
-                                }).start()
+                            Thread {
+                                val img = Picasso.get().load(Uri.parse(user.photo)).get()
+                                this.post {
+                                    setImageBitmap(img)
+                                }
+                            }.start()
                         } else {
                             translationY = measuredHeight / 6F
                             setImageDrawable(getDrawable(R.drawable.ic_profile))
@@ -99,6 +121,8 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfig) || super.onSupportNavigateUp()
     }
@@ -118,8 +142,15 @@ class MainActivity : AppCompatActivity() {
             RC_GOOGLE_SIGN_IN -> {
                 try {
                     // Sign in
-                    val account = GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException::class.java)!!
-                    auth.signInWithCredential(GoogleAuthProvider.getCredential(account.idToken, null)).addOnCompleteListener(this) { login() }
+                    val account = GoogleSignIn.getSignedInAccountFromIntent(data).getResult(
+                        ApiException::class.java
+                    )!!
+                    auth.signInWithCredential(
+                        GoogleAuthProvider.getCredential(
+                            account.idToken,
+                            null
+                        )
+                    ).addOnCompleteListener(this) { login() }
                 } catch (e: ApiException) {
                     e.printStackTrace()
                     login()
@@ -165,7 +196,6 @@ class MainActivity : AppCompatActivity() {
 
     // Companion
     companion object {
-        private const val TAG = "MM_MAIN_ACTIVITY"
         private const val RC_GOOGLE_SIGN_IN = 9001
     }
 }
