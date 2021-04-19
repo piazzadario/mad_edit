@@ -2,10 +2,10 @@ package it.polito.mad.madmax
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
-import android.os.StrictMode.VmPolicy
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
@@ -27,7 +27,8 @@ import com.squareup.picasso.Picasso
 import it.polito.mad.madmax.data.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_nav_header.view.*
-import kotlinx.coroutines.coroutineScope
+import com.google.firebase.perf.ktx.performance
+import com.google.firebase.perf.metrics.AddTrace;
 
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfig: AppBarConfiguration
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    @AddTrace(name = "MainActivity-oncreate", enabled = true )
     override fun onCreate(savedInstanceState: Bundle?) {
         /*StrictMode.setThreadPolicy(
             StrictMode.ThreadPolicy.Builder()
@@ -61,10 +64,12 @@ class MainActivity : AppCompatActivity() {
                 .build()
         )
 */
+
         super.onCreate(savedInstanceState)
-
+        val newTrace = Firebase.performance.newTrace("Main.SetContentView")
+        newTrace.start()
         setContentView(R.layout.activity_main)
-
+        newTrace.stop()
         // Action bar
         app_bar_layout.setBackgroundResource(0)
         setSupportActionBar(main_toolbar)
@@ -85,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfig)
 
-        // Observe user data
+
         userVM.getCurrentUserData().observe(this, Observer { user ->
             main_nav.getHeaderView(0).apply {
                 main_nav_header_nickname.text = user.name
@@ -119,6 +124,7 @@ class MainActivity : AppCompatActivity() {
             login()
         }
     }
+
 
 
 
@@ -198,4 +204,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val RC_GOOGLE_SIGN_IN = 9001
     }
+
 }
+

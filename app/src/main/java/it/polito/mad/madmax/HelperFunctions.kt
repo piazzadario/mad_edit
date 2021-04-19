@@ -18,13 +18,16 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import androidx.exifinterface.media.ExifInterface
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.text.SimpleDateFormat
@@ -41,29 +44,45 @@ fun closeKeyboard(activity: Activity) {
 
 fun showProgress(activity: Activity) {
     closeKeyboard(activity)
-    activity.main_progress.visibility = View.VISIBLE
-}
-
-fun hideProgress(activity: Activity) {
-    activity.main_progress.visibility = View.GONE
-}
-
-fun showFab(activity: Activity, clickListener: View.OnClickListener, drawable: Drawable?) {
-    activity.main_fab.apply {
-        scaleX = 1F
-        scaleY = 1F
-        alpha = 1F
-        setOnClickListener(clickListener)
-        setImageDrawable(drawable)
-        visibility = View.VISIBLE
+    val stubExists = activity.progress_stub != null
+    if(stubExists) {
+        activity.progress_stub.inflate()
+    }else{
+        activity.findViewById<ProgressBar>(R.id.main_progress).visibility = View.VISIBLE
     }
 }
 
+fun hideProgress(activity: Activity) {
+    val stubExists = activity.progress_stub != null
+    if (!stubExists)activity.findViewById<ProgressBar>(R.id.main_progress).visibility = View.GONE
+}
+
+fun showFab(activity: Activity, clickListener: View.OnClickListener, drawable: Drawable?) {
+
+    lateinit var fab:FloatingActionButton;
+    val stubExist  = activity.fab_stub != null
+    if(stubExist) {
+        fab = activity.fab_stub.inflate() as FloatingActionButton
+        fab.apply {
+            scaleX = 1F
+            scaleY = 1F
+            alpha = 1F
+            setOnClickListener(clickListener)
+            setImageDrawable(drawable)
+            visibility = View.VISIBLE
+        }
+    }else{
+        activity.findViewById<FloatingActionButton>(R.id.main_fab).visibility = View.VISIBLE
+    }
+
+}
+
 fun removeFabListener(activity: Activity){
-    activity.main_fab.setOnClickListener(null)
+    activity.findViewById<FloatingActionButton>(R.id.main_fab).setOnClickListener(null)
 }
 fun hideFab(activity: Activity) {
-    activity.main_fab.visibility = View.GONE
+    val stubExist  = activity.fab_stub != null
+    if(!stubExist) activity.findViewById<FloatingActionButton>(R.id.main_fab).visibility = View.GONE
 }
 
 fun deletePhoto(context: Context, path: String) {

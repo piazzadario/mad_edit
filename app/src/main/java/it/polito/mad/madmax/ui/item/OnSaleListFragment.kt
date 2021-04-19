@@ -1,5 +1,7 @@
 package it.polito.mad.madmax.ui.item
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -11,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.perf.metrics.AddTrace
 import it.polito.mad.madmax.*
 import it.polito.mad.madmax.data.model.Item
 import it.polito.mad.madmax.data.repository.MyFirebaseMessagingService.Companion.createNotification
@@ -41,11 +44,14 @@ class OnSaleListFragment : Fragment() {
 
     }
 
+    @AddTrace(name = "onSale-onCreateView", enabled = true /* optional */)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_item_list, container, false)
     }
 
+    @AddTrace(name = "onSale-onViewCreated", enabled = true /* optional */)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         showProgress(requireActivity())
         hideFab(requireActivity())
@@ -66,6 +72,8 @@ class OnSaleListFragment : Fragment() {
             } else {
                 item_list_empty_tv.visibility = View.GONE
                 item_list_empty_tv.animate().alpha(0F).startDelay = 300
+                activity?.reportFullyDrawn()
+
             }
         })
 
@@ -97,6 +105,10 @@ class OnSaleListFragment : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_filter_item, menu)

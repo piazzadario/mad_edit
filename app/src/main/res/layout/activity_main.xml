@@ -38,12 +38,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ProgressBar
-                    android:id="@+id/main_progress"
-                    style="@style/Theme.MadMax.ProgressBar"
+                <ViewStub
+                    android:id="@+id/progress_stub"
+                    android:inflatedId="@+id/main_progress"
+                    android:layout="@layout/my_progress_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="true"
                     app:layout_constraintTop_toTopOf="@+id/main_nav_host_fragment" />
 
                 <fragment
@@ -63,16 +63,14 @@
         </androidx.core.widget.NestedScrollView>
 
         <!-- FAB -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/main_fab"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:layout_width="wrap_content"
+        <ViewStub
+            android:id="@+id/fab_stub"
+            android:inflatedId="@+id/main_fab"
+            android:layout="@layout/my_fab"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_add"
-            app:tint="@color/iconOnPrimary" />
+            android:layout_gravity="bottom|end" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

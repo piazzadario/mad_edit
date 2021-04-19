@@ -12,6 +12,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.ListenerRegistration
 import it.polito.mad.madmax.*
 import it.polito.mad.madmax.data.model.Item
@@ -99,8 +100,8 @@ class ItemListFragment : Fragment() {
         private var animatingOut: Boolean = false
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            if (dy > 0 && !animatingOut && requireActivity().main_fab.visibility == View.VISIBLE) {
-                ViewCompat.animate(requireActivity().main_fab).scaleX(0.0f).scaleY(0.0f).alpha(0.0f)
+            if (dy > 0 && !animatingOut && requireActivity().findViewById<FloatingActionButton>(R.id.main_fab).visibility == View.VISIBLE) {
+                ViewCompat.animate(requireActivity().findViewById<FloatingActionButton>(R.id.main_fab)).scaleX(0.0f).scaleY(0.0f).alpha(0.0f)
                     .setInterpolator(FastOutSlowInInterpolator()).withLayer()
                     .setListener(object : ViewPropertyAnimatorListener {
                         override fun onAnimationStart(view: View?) {
@@ -116,9 +117,9 @@ class ItemListFragment : Fragment() {
                             view.visibility = View.GONE
                         }
                     }).start()
-            } else if (dy < 0 && requireActivity().main_fab.visibility != View.VISIBLE) {
-                requireActivity().main_fab.visibility = View.VISIBLE
-                ViewCompat.animate(requireActivity().main_fab).scaleX(1.0f).scaleY(1.0f).alpha(1.0f)
+            } else if (dy < 0 && requireActivity().findViewById<FloatingActionButton>(R.id.main_fab).visibility != View.VISIBLE) {
+                requireActivity().findViewById<FloatingActionButton>(R.id.main_fab).visibility = View.VISIBLE
+                ViewCompat.animate(requireActivity().findViewById<FloatingActionButton>(R.id.main_fab)).scaleX(1.0f).scaleY(1.0f).alpha(1.0f)
                     .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null)
                     .start()
             }

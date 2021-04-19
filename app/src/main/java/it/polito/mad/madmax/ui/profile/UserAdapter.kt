@@ -36,11 +36,13 @@ class UserAdapter(private val actionShow: (String) -> Any, private val actionSel
     class UserViewHolder(private val userView: View) : RecyclerView.ViewHolder(userView) {
         fun bind(user: User, actionVisit: (String) -> Any, actionSell: (User) -> Any) {
             userView.user_card_name.text = user.name
+
             userView.user_photo.post {
                 Picasso.get().load(Uri.parse(user.photo)).into(userView.user_photo, object : Callback {
                     override fun onSuccess() {
                         userView.user_photo.translationY = 0F
                     }
+
 
                     override fun onError(e: Exception?) {
                         userView.user_photo.apply {
@@ -50,6 +52,7 @@ class UserAdapter(private val actionShow: (String) -> Any, private val actionSel
                     }
                 })
             }
+
             userView.user_card.setOnClickListener { actionVisit(user.userId) }
             userView.user_sell.setOnClickListener { actionSell(user) }
         }

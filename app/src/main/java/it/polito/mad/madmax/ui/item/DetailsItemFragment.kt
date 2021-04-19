@@ -20,6 +20,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.messaging.FirebaseMessaging
 import com.squareup.picasso.Callback
@@ -341,8 +342,8 @@ class DetailsItemFragment : Fragment(),OnMapReadyCallback {
 
     private val scrollListener = ViewTreeObserver.OnScrollChangedListener {
         activity?.also {
-            if (start < requireActivity().main_scroll_view.scrollY && !animatingOut && requireActivity().main_fab.visibility == View.VISIBLE) {
-                ViewCompat.animate(requireActivity().main_fab).scaleX(0.0f).scaleY(0.0f).alpha(0.0f)
+            if (start < requireActivity().main_scroll_view.scrollY && !animatingOut && requireActivity().findViewById<FloatingActionButton>(R.id.main_fab).visibility == View.VISIBLE) {
+                ViewCompat.animate(requireActivity().findViewById<FloatingActionButton>(R.id.main_fab)).scaleX(0.0f).scaleY(0.0f).alpha(0.0f)
                     .setInterpolator(FastOutSlowInInterpolator()).withLayer()
                     .setListener(object : ViewPropertyAnimatorListener {
                         override fun onAnimationStart(view: View?) {
@@ -358,9 +359,9 @@ class DetailsItemFragment : Fragment(),OnMapReadyCallback {
                             view.visibility = View.GONE
                         }
                     }).start()
-            } else if (start > requireActivity().main_scroll_view.scrollY && requireActivity().main_fab.visibility != View.VISIBLE) {
-                requireActivity().main_fab.visibility = View.VISIBLE
-                ViewCompat.animate(requireActivity().main_fab).scaleX(1.0f).scaleY(1.0f).alpha(1.0f)
+            } else if (start > requireActivity().main_scroll_view.scrollY && requireActivity().findViewById<FloatingActionButton>(R.id.main_fab).visibility != View.VISIBLE) {
+                requireActivity().findViewById<FloatingActionButton>(R.id.main_fab).visibility = View.VISIBLE
+                ViewCompat.animate(requireActivity().findViewById<FloatingActionButton>(R.id.main_fab)).scaleX(1.0f).scaleY(1.0f).alpha(1.0f)
                     .setInterpolator(FastOutSlowInInterpolator()).withLayer().setListener(null)
                     .start()
             }
