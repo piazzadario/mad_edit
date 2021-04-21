@@ -1,8 +1,8 @@
 package it.polito.mad.madmax.ui.item
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.os.Trace
 import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -46,7 +46,10 @@ class OnSaleListFragment : Fragment() {
 
     @AddTrace(name = "onSale-onCreateView", enabled = true /* optional */)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_item_list, container, false)
+        Trace.beginSection("inflate onSaleListFragment")
+        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        Trace.endSection()
+        return view
     }
 
     @AddTrace(name = "onSale-onViewCreated", enabled = true /* optional */)
@@ -105,10 +108,7 @@ class OnSaleListFragment : Fragment() {
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
 
-    }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_filter_item, menu)

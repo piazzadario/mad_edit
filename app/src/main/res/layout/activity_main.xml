@@ -75,13 +75,15 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- NAVIGATION -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/main_nav"
+
+    <ViewStub
+        android:id="@+id/nav_stub"
+        android:inflatedId="@+id/main_nav"
+        android:layout="@layout/my_navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/main_nav_header"
-        app:menu="@menu/menu_navigation" />
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>

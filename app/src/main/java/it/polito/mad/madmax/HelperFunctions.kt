@@ -14,12 +14,14 @@ import android.location.Geocoder
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.os.Trace
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
@@ -43,6 +45,7 @@ fun closeKeyboard(activity: Activity) {
 }
 
 fun showProgress(activity: Activity) {
+    val asyncLayoutInflater = AsyncLayoutInflater(activity.baseContext)
     closeKeyboard(activity)
     val stubExists = activity.progress_stub != null
     if(stubExists) {
@@ -62,7 +65,9 @@ fun showFab(activity: Activity, clickListener: View.OnClickListener, drawable: D
     lateinit var fab:FloatingActionButton;
     val stubExist  = activity.fab_stub != null
     if(stubExist) {
+        Trace.beginSection("Inflating FAB_STUB")
         fab = activity.fab_stub.inflate() as FloatingActionButton
+        Trace.endSection()
         fab.apply {
             scaleX = 1F
             scaleY = 1F
