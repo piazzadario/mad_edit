@@ -35,6 +35,7 @@ class UserViewModel : ViewModel() {
         }
     }
 
+    //prova
     private val interestedUsers: MutableLiveData<ArrayList<User>> by lazy {
         MutableLiveData<ArrayList<User>>().apply {
             value = ArrayList<User>()
