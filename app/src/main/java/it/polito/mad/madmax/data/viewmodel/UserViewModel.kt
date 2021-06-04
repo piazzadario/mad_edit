@@ -28,7 +28,7 @@ class UserViewModel : ViewModel() {
             value = User()
         }
     }
-
+//
     private val otherUser: MutableLiveData<User> by lazy {
         MutableLiveData<User>().apply {
             value = User()
